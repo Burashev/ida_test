@@ -335,6 +335,10 @@ body {
         top: -10px;
         right: -10px;
         cursor: pointer;
+        transition: background-color ease .2s;
+        &:hover {
+          background: #b65b5b;
+        }
       }
 
       &:hover {
