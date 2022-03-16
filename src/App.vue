@@ -13,16 +13,18 @@
       <product-list :products="products"/>
     </main>
   </div>
+  <notification-list />
 </template>
 
 <script>
 import ProductList from '@/components/ProductList'
 import ProductForm from '@/components/ProductForm'
+import NotificationList from '@/components/NotificationList'
 import { mapState } from 'vuex'
 
 export default {
   name: 'App',
-  components: { ProductList, ProductForm },
+  components: { ProductList, ProductForm, NotificationList },
   computed: {
     ...mapState('product', ['products'])
   }

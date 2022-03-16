@@ -74,6 +74,10 @@ export default {
         image: this.image
       }
       this.$store.dispatch('product/addProduct', product)
+      this.$store.dispatch('notification/createNotification', {
+        error: false,
+        text: 'Product successfully added'
+      })
       this.formClear()
     },
     formClear () {
