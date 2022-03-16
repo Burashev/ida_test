@@ -1,11 +1,6 @@
 <template>
   <div class="container">
-    <header class="header">
-      <h1 class="header__title">Добавление товара</h1>
-      <select class="header__select">
-        <option value="default" disabled selected>По умолчанию</option>
-      </select>
-    </header>
+    <product-header/>
     <main class="main">
       <div class="form-wrapper">
         <product-form/>
@@ -13,18 +8,24 @@
       <product-list :products="products"/>
     </main>
   </div>
-  <notification-list />
+  <notification-list/>
 </template>
 
 <script>
 import ProductList from '@/components/ProductList'
 import ProductForm from '@/components/ProductForm'
 import NotificationList from '@/components/NotificationList'
+import ProductHeader from '@/components/ProductHeader'
 import { mapState } from 'vuex'
 
 export default {
   name: 'App',
-  components: { ProductList, ProductForm, NotificationList },
+  components: {
+    ProductHeader,
+    ProductList,
+    ProductForm,
+    NotificationList
+  },
   computed: {
     ...mapState('product', ['products'])
   }
@@ -71,26 +72,6 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 32px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-
-  &__title {
-    color: #3F3F3F;
-    line-height: 35px;
-    font-weight: 600;
-  }
-
-  &__select {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    border: none;
-    background-color: #FFFEFB;
-    padding: 10px 16px;
-    color: #B4B4B4;
-  }
 }
 
 .main {
