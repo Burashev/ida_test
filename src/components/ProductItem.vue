@@ -28,7 +28,7 @@
     <div class="item__text">
       <h3 class="item__title">{{ product.title }}</h3>
       <p class="item__description">{{ product.description }}</p>
-      <h2 class="item__price">{{ product.price }} руб.</h2>
+      <h2 class="item__price">{{ formattedPrice }} руб.</h2>
     </div>
   </div>
 </template>
@@ -49,6 +49,11 @@ export default {
         error: true,
         text: 'Product has been deleted'
       })
+    }
+  },
+  computed: {
+    formattedPrice () {
+      return this.product.price.toLocaleString('RU')
     }
   }
 }
