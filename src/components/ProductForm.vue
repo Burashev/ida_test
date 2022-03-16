@@ -19,7 +19,7 @@
     <div class="form__group">
       <label for="price" class="required">Цена товара</label>
       <input type="text" id="price" placeholder="Введите наименование товара" v-model="price"
-             :class="{'error': errorFields.has('price')}" required>
+             :class="{'error': errorFields.has('price')}" @input="inputMask" required>
       <span>Поле является обязательным</span>
     </div>
     <button :disabled="hasErrors">Добавить товар</button>
@@ -56,6 +56,14 @@ export default {
       }
 
       this.hasErrors = !!this.errorFields.size
+    },
+    inputMask () {
+      const price = +this.price.split(/\s/).join('')
+      if (Object.is(price, NaN)) {
+        this.price = 0
+        return null
+      }
+      this.price = price.toLocaleString('RU')
     }
   }
 }
