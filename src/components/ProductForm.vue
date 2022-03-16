@@ -1,28 +1,63 @@
 <template>
-  <form class="form">
+  <form class="form" @change="formValidation">
     <div class="form__group">
-      <label for="name" class="required">Наименование товара</label>
-      <input type="text" id="name" placeholder="Введите наименование товара" required>
+      <label for="title" class="required">Наименование товара</label>
+      <input type="text" id="title" placeholder="Введите наименование товара" v-model="title"
+             :class="{'error': errorFields.has('title')}" required>
+      <span>Поле является обязательным</span>
     </div>
     <div class="form__group">
       <label for="description">Описание товара</label>
-      <textarea id="description" placeholder="Введите наименование товара"></textarea>
+      <textarea id="description" placeholder="Введите наименование товара" v-model="description"></textarea>
     </div>
     <div class="form__group">
       <label for="image_link" class="required">Ссылка на изобржаение товара</label>
-      <input type="text" id="image_link" placeholder="Введите наименование товара" required>
+      <input type="text" id="image_link" placeholder="Введите наименование товара" v-model="image"
+             :class="{'error': errorFields.has('image')}" required>
+      <span>Поле является обязательным</span>
     </div>
     <div class="form__group">
       <label for="price" class="required">Цена товара</label>
-      <input type="text" id="price" placeholder="Введите наименование товара" required>
+      <input type="text" id="price" placeholder="Введите наименование товара" v-model="price"
+             :class="{'error': errorFields.has('price')}" required>
+      <span>Поле является обязательным</span>
     </div>
-    <button>Добавить товар</button>
+    <button :disabled="hasErrors">Добавить товар</button>
   </form>
 </template>
 
 <script>
 export default {
-  name: 'ProductForm'
+  name: 'ProductForm',
+  data () {
+    return {
+      title: '',
+      description: '',
+      image: '',
+      price: '',
+      errorFields: new Set(),
+      hasErrors: true
+    }
+  },
+  methods: {
+    formValidation () {
+      this.errorFields = new Set()
+
+      if (!this.title) {
+        this.errorFields.add('title')
+      }
+
+      if (!this.image) {
+        this.errorFields.add('image')
+      }
+
+      if (!this.price) {
+        this.errorFields.add('price')
+      }
+
+      this.hasErrors = !!this.errorFields.size
+    }
+  }
 }
 </script>
 
@@ -69,6 +104,22 @@ export default {
       &::placeholder {
         color: #B4B4B4;
       }
+
+      & + span {
+        color: #FF8484;
+        font-size: .9rem;
+        margin-top: 5px;
+        display: none;
+      }
+
+      &.error {
+        outline: 2px solid #FF8484;
+
+        & + span {
+          display: inline-block;
+        }
+      }
+
     }
 
     textarea {
@@ -78,13 +129,19 @@ export default {
 
   button {
     width: 100%;
-    background-color: #EEEEEE;
+    background-color: #7BAE73;
     border-radius: 10px;
     border: none;
     padding: 10px 0;
-    color: #B4B4B4;
+    color: white;
     font-weight: 600;
     cursor: pointer;
+
+    &:disabled {
+      color: #B4B4B4;
+      background-color: #EEEEEE;
+      cursor: pointer;
+    }
   }
 }
 </style>
