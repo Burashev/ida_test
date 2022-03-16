@@ -1,5 +1,5 @@
 <template>
-  <form class="form" @change="formValidation">
+  <form class="form" @change="formValidation" @submit.prevent="formSubmit">
     <div class="form__group">
       <label for="title" class="required">Наименование товара</label>
       <input type="text" id="title" placeholder="Введите наименование товара" v-model="title"
@@ -22,7 +22,7 @@
              :class="{'error': errorFields.has('price')}" @input="inputMask" required>
       <span>Поле является обязательным</span>
     </div>
-    <button :disabled="hasErrors">Добавить товар</button>
+    <button :disabled="hasErrors" type="submit">Добавить товар</button>
   </form>
 </template>
 
@@ -64,6 +64,16 @@ export default {
         return null
       }
       this.price = price.toLocaleString('RU')
+    },
+    formSubmit () {
+      const product = {
+        id: Date.now(),
+        title: this.title,
+        price: this.price,
+        description: this.description,
+        image: this.image
+      }
+      this.$store.dispatch('product/addProduct', product)
     }
   }
 }
