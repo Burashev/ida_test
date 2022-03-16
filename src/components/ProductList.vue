@@ -37,4 +37,8 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
+
+.fade-move {
+  transition: transform 0.5s ease;
+}
 </style>
