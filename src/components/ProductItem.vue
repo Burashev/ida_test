@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <div class="item__trash">
+    <div class="item__trash" @click="trashClick">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_4_349)">
           <path
@@ -40,6 +40,15 @@ export default {
     product: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    trashClick () {
+      this.$store.dispatch('product/deleteProduct', this.product.id)
+      this.$store.dispatch('notification/createNotification', {
+        error: true,
+        text: 'Product has been deleted'
+      })
     }
   }
 }
