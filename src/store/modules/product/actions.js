@@ -1,8 +1,12 @@
+import localStorageService from '@/services/localStorageService'
+
 export default {
-  addProduct ({ commit }, product) {
+  addProduct ({ state, commit }, product) {
     commit('ADD_PRODUCT', product)
+    localStorageService.setProducts(state.products)
   },
-  deleteProduct ({ commit }, productId) {
+  deleteProduct ({ state, commit }, productId) {
     commit('DELETE_PRODUCT', productId)
+    localStorageService.setProducts(state.products)
   }
 }

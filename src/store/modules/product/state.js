@@ -1,5 +1,7 @@
+import localStorageService from '@/services/localStorageService'
+
 export default {
-  products: [
+  products: localStorageService.getProducts() ?? [
     {
       id: 1,
       title: 'Наименование товара',
