@@ -5,7 +5,7 @@
       <div class="form-wrapper">
         <product-form/>
       </div>
-      <product-list :products="products"/>
+      <product-list :products="sortedProducts"/>
     </main>
   </div>
   <notification-list/>
@@ -16,7 +16,7 @@ import ProductList from '@/components/ProductList'
 import ProductForm from '@/components/ProductForm'
 import NotificationList from '@/components/NotificationList'
 import ProductHeader from '@/components/ProductHeader'
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
@@ -27,7 +27,7 @@ export default {
     NotificationList
   },
   computed: {
-    ...mapState('product', ['products'])
+    ...mapGetters('product', ['sortedProducts'])
   }
 }
 </script>

@@ -37,5 +37,6 @@ export default {
       price: 10000,
       image: 'https://i.imgur.com/w9uvR4T.png'
     }
-  ]
+  ],
+  sortBy: 'default'
 }

@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <h1 class="header__title">Добавление товара</h1>
-    <select class="header__select">
+    <select class="header__select" @input="selectInput" v-model="sortValue">
       <option value="default" selected>По умолчанию</option>
       <option value="min">По цене min</option>
       <option value="max">По цене max</option>
@@ -12,7 +12,19 @@
 
 <script>
 export default {
-  name: 'ProductHeader'
+  name: 'ProductHeader',
+  data () {
+    return {
+      sortValue: 'default'
+    }
+  },
+  watch: {
+    sortValue: {
+      handler () {
+        this.$store.dispatch('product/setSortBy', this.sortValue)
+      }
+    }
+  }
 }
 </script>
 

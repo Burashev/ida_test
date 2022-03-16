@@ -8,5 +8,8 @@ export default {
   deleteProduct ({ state, commit }, productId) {
     commit('DELETE_PRODUCT', productId)
     localStorageService.setProducts(state.products)
+  },
+  setSortBy ({ commit }, sortBy) {
+    commit('SET_STORE_BY', sortBy)
   }
 }
