@@ -1,6 +1,8 @@
 <template>
   <div class="items-list">
-    <product-item v-for="product in products" :product="product" :key="product.id"/>
+    <transition-group name="fade">
+      <product-item v-for="product in products" :product="product" :key="product.id"/>
+    </transition-group>
   </div>
 </template>
 
@@ -24,5 +26,15 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 16px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

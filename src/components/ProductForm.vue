@@ -58,9 +58,9 @@ export default {
       this.hasErrors = !!this.errorFields.size
     },
     inputMask () {
-      const price = +this.price.split(/\s/).join('')
+      const price = this.actualPrice
       if (Object.is(price, NaN)) {
-        this.price = 0
+        this.price = '0'
         return null
       }
       this.price = price.toLocaleString('RU')
@@ -69,11 +69,24 @@ export default {
       const product = {
         id: Date.now(),
         title: this.title,
-        price: this.price,
+        price: this.actualPrice,
         description: this.description,
         image: this.image
       }
       this.$store.dispatch('product/addProduct', product)
+      this.formClear()
+    },
+    formClear () {
+      this.title = ''
+      this.price = ''
+      this.description = ''
+      this.image = ''
+      this.hasErrors = true
+    }
+  },
+  computed: {
+    actualPrice () {
+      return +this.price.split(/\s/).join('')
     }
   }
 }
