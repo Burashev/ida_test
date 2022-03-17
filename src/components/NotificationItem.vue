@@ -36,7 +36,7 @@ export default {
   cursor: pointer;
 
   &.error {
-    background-color: #b65b5b;
+    background-color: #FF8484;
     color: white;
   }
 }

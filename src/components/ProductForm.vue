@@ -171,11 +171,17 @@ export default {
     color: white;
     font-weight: 600;
     cursor: pointer;
-
+    transition: background-color ease .4s;
+    &:hover {
+      background-color: #52774d;
+    }
     &:disabled {
       color: #B4B4B4;
       background-color: #EEEEEE;
-      cursor: pointer;
+      cursor: not-allowed;
+      &:hover {
+        background-color: #dcdcdc;
+      }
     }
   }
 }

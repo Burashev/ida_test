@@ -1,5 +1,7 @@
+import localStorageService from '@/services/localStorageService'
+
 export default {
-  products: [
+  products: localStorageService.getProducts() ?? [
     {
       id: 1,
       title: 'Наименование товара',
@@ -35,5 +37,6 @@ export default {
       price: 10000,
       image: 'https://i.imgur.com/w9uvR4T.png'
     }
-  ]
+  ],
+  sortBy: 'default'
 }
