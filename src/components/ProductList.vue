@@ -39,6 +39,7 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 16px;
   position: relative;
+  min-height: 100px;
 }
 
 .fade-enter-active,

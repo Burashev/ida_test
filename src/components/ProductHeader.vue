@@ -37,6 +37,9 @@ export default {
     color: #3F3F3F;
     line-height: 35px;
     font-weight: 600;
+    @media (max-width: 1270px) {
+      font-size: 1.5rem;
+    }
   }
 
   &__select {
