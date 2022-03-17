@@ -1,22 +1,34 @@
 <template>
   <div class="items-list">
     <transition-group name="fade">
-      <product-item v-for="product in products" :product="product" :key="product.id"/>
+      <product-loader v-if="isLoading"/>
+      <product-item v-else v-for="product in products" :product="product" :key="product.id"/>
     </transition-group>
   </div>
 </template>
 
 <script>
 import ProductItem from '@/components/ProductItem'
+import ProductLoader from '@/components/ProductLoader'
 
 export default {
   name: 'ProductList',
-  components: { ProductItem },
+  components: { ProductLoader, ProductItem },
   props: {
     products: {
       type: Array,
       required: true
     }
+  },
+  data () {
+    return {
+      isLoading: true
+    }
+  },
+  created () {
+    setTimeout(() => {
+      this.isLoading = false
+    }, 1300)
   }
 }
 </script>
@@ -26,6 +38,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 16px;
+  position: relative;
 }
 
 .fade-enter-active,
